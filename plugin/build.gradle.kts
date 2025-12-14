@@ -25,9 +25,9 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        create("xyz.kyngs.libby.plugin") {
-            id = "xyz.kyngs.libby.plugin"
-            implementationClass = "xyz.kyngs.libby.plugin.LibbyGradlePlugin"
+        create("xyz.miguvt.libby.plugin") {
+            id = "xyz.miguvt.libby.plugin"
+            implementationClass = "xyz.miguvt.libby.plugin.LibbyGradlePlugin"
             version = project.version
         }
     }

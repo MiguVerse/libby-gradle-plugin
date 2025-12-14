@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package xyz.kyngs.libby.plugin;
+package xyz.miguvt.libby.plugin;
 
 import java.util.ArrayList;
 import java.util.List;

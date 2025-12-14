@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package xyz.kyngs.libby.plugin;
+package xyz.miguvt.libby.plugin;
 
 import com.grack.nanojson.JsonWriter;
 import org.gradle.api.DefaultTask;

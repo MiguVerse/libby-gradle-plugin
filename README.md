@@ -23,7 +23,7 @@ Then, simply apply the plugin in the `build.gradle` file:
 
 ```groovy
 plugins {
-    id 'xyz.kyngs.libby.plugin' version '1.0.0'
+    id 'xyz.miguvt.libby.plugin' version '1.0.0'
 }
 ```
 
@@ -64,7 +64,7 @@ Firstly, we need to add the `shadow` plugin:
 ```groovy
 plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
-    id 'xyz.kyngs.libby.plugin' version '1.0.0'
+    id 'xyz.miguvt.libby.plugin' version '1.0.0'
 }
 ```
 
