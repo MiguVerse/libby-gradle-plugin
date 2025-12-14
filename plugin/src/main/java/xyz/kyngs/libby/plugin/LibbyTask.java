@@ -25,17 +25,32 @@ import java.util.Base64;
 import java.util.List;
 import javax.inject.Inject;
 
+/**
+ * Gradle task that generates a {@code libby.json} manifest containing
+ * dependency coordinates, checksums, repositories, and relocations.
+ */
 public class LibbyTask extends DefaultTask {
 
     private final Configuration customScope;
     private final Project project;
 
+    /**
+     * Creates a new LibbyTask.
+     *
+     * @param customScope the libby configuration containing dependencies to include
+     * @param project     the Gradle project
+     */
     @Inject
     public LibbyTask(Configuration customScope, Project project) {
         this.customScope = customScope;
         this.project = project;
     }
 
+    /**
+     * Executes the task: resolves dependencies and writes {@code libby.json}.
+     *
+     * @throws NoSuchAlgorithmException if SHA-256 is not available
+     */
     @TaskAction
     public void run() throws NoSuchAlgorithmException {
         var main = project
@@ -47,7 +62,7 @@ public class LibbyTask extends DefaultTask {
         var excludedDependencies = project.getExtensions().getByType(LibbyExtension.class).getExcludedDependencies();
         var noChecksumDependencies = project.getExtensions().getByType(LibbyExtension.class).getNoChecksumDependencies();
 
-        var output = new File(project.getBuildDir().getPath() + "/libby", "libby.json");
+        var output = new File(project.getLayout().getBuildDirectory().get().getAsFile(), "libby/libby.json");
         output.getParentFile().mkdirs();
 
         main.getResources().srcDir(output.getParentFile());
@@ -133,6 +148,12 @@ public class LibbyTask extends DefaultTask {
         return ShadowPluginIntegration.extractShadowJarRelocations(project); //Move to a separate class to avoid class loading issues
     }
 
+    /**
+     * Represents a package relocation (from original to shaded path).
+     *
+     * @param from the original package path
+     * @param to   the relocated (shaded) package path
+     */
     protected record Relocation(String from, String to) {
     }
 }

@@ -9,7 +9,7 @@ plugins {
     // Apply the Java Gradle plugin development plugin to add support for developing Gradle plugins
     `java-gradle-plugin`
     `maven-publish`
-    id("org.cadixdev.licenser").version("0.6.1")
+    // id("org.cadixdev.licenser").version("0.6.1") // TODO We should search an alternative license plugin
 }
 
 repositories {
@@ -19,14 +19,9 @@ repositories {
 }
 
 dependencies {
-    implementation("com.grack:nanojson:1.7")
+    implementation("com.grack:nanojson:1.10")
 
-    compileOnly("com.github.johnrengelman:shadow:8.1.1")
-
-    // Use JUnit Jupiter for testing.
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    compileOnly("com.gradleup.shadow:com.gradleup.shadow.gradle.plugin:9.3.0")
 }
 
 gradlePlugin {
@@ -39,11 +34,6 @@ gradlePlugin {
     }
 }
 
-tasks.named<Test>("test") {
-    // Use JUnit Jupiter for unit tests.
-    useJUnitPlatform()
-}
-
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
@@ -51,29 +41,13 @@ java {
     withJavadocJar()
 }
 
-license {
-    header(rootProject.file("HEADER.txt"))
-    include("**/*.java")
-    newLine(true)
-}
+// license { // TODO We should search an alternative license plugin as said above
+//     header(rootProject.file("HEADER.txt"))
+//     include("**/*.java")
+// }
 
 tasks.withType<JavaCompile> {
     options.compilerArgs.add("-parameters")
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "kyngsRepo"
-            url = uri(
-                    "https://repo.kyngs.xyz/gradle-plugins/"
-            )
-            credentials(PasswordCredentials::class)
-            authentication {
-                create<BasicAuthentication>("basic")
-            }
-        }
-    }
-}
-
-version = "1.2.1"
+version = "1.2.2"

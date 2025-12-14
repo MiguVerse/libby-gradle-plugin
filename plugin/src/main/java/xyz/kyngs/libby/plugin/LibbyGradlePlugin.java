@@ -16,9 +16,22 @@ import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.language.jvm.tasks.ProcessResources;
 
 /**
- * A simple 'hello world' plugin.
+ * Gradle plugin that generates a {@code libby.json} manifest of runtime dependencies.
+ * <p>
+ * This plugin creates a custom {@code libby} configuration and a {@code libby} task
+ * that outputs dependency metadata for use with the Libby library loader.
  */
 public class LibbyGradlePlugin implements Plugin<Project> {
+
+    /** Default constructor. */
+    public LibbyGradlePlugin() {
+    }
+
+    /**
+     * Applies the libby plugin to the given project.
+     *
+     * @param project the Gradle project
+     */
     public void apply(Project project) {
         project.getExtensions().create("libby", LibbyExtension.class);
 
