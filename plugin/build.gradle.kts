@@ -49,4 +49,4 @@ tasks.withType<JavaCompile> {
     options.compilerArgs.add("-parameters")
 }
 
-version = "1.2.2"
+version = "1.2.3"
