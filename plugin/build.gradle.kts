@@ -8,7 +8,6 @@
 plugins {
     // Apply the Java Gradle plugin development plugin to add support for developing Gradle plugins
     `java-gradle-plugin`
-    `maven-publish`
     // id("org.cadixdev.licenser").version("0.6.1") // TODO We should search an alternative license plugin
 }
 
